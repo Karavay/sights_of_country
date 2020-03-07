@@ -1,0 +1,13 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+    <link href='{% static "style.css" %}' rel='stylesheet' type='text/css' >
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+    <img src="{% static 'ive_ruslan_avdevich_14.jpg' %}">
+  </body>
+</html>

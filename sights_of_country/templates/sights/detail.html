@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{sight.sight_title}}{% endblock %}
+
+{% block content %}
+  <h2>{{sight.sight_title}}</h2>
+  <p>{{sight.sight_description}}</p>
+  <em>{{sight.pub_date}}</em></br>
+
+  {% if img_list %}
+    {% for i in img_list %}
+      {% load static %}
+      <!-- <img src="{% static './ive_ruslan_avdevich_14.jpg' %}" alt='myimg' width = '400px' height="400px"> -->
+      <img src='{{i.img.url}}' width = 50% heigth = 50%>
+      <p>{{i.img_text}}</p>
+    {% endfor %}
+  {% else %}
+    Картинок нет!
+  {% endif %}
+
+{% endblock %}

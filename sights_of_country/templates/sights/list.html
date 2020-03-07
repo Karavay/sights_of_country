@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Список объектов{% endblock %}
+
+{% block content %}
+  {% if sights_list %}
+    {% for s in sights_list %}
+      <a href='{% url "sights:detail" s.id %}'>{{s.sight_title}}</a><br>
+    {% endfor %}
+  {% else %}
+    Статей нет!!!
+  {% endif %}
+{% endblock %}
