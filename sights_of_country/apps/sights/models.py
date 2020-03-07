@@ -2,7 +2,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 import PIL
 
-fs = FileSystemStorage(location = '/media/images')  
+fs = FileSystemStorage(location = 'apps/sights/media/images')  
 class Sight(models.Model):
     sight_title = models.CharField('название объекта',max_length = 50)
     sight_description = models.TextField('описание объекта')
