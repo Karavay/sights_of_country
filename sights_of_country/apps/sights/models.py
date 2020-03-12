@@ -2,7 +2,8 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 import PIL
 
-fs = FileSystemStorage(location = 'apps/sights/media/images')  
+fs = FileSystemStorage(location = 'sights_of_country/media')
+
 class Sight(models.Model):
     sight_title = models.CharField('название объекта',max_length = 50)
     sight_description = models.TextField('описание объекта')
@@ -19,7 +20,7 @@ class Sight(models.Model):
 
 class Image(models.Model):
     sight = models.ForeignKey(Sight,on_delete = models.CASCADE)
-    img = models.ImageField('изображение объекта')
+    img = models.ImageField('изображение объекта',storage=fs)
     img_text = models.CharField('комментарии к изображению',max_length = 50)
 
     def __str__(self):

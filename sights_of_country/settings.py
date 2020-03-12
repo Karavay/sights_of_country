@@ -125,8 +125,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media/')
-STATIC_ROOT = os.path.join(PROJECT_ROOT,'static/')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media')
+STATIC_ROOT = os.path.join(PROJECT_ROOT,'static')
 
 STATICFILES_DIRS = [
     'sights_of_country/apps/sights/static',

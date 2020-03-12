@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link type='text/css' rel='stylesheet' href='{% static "css/style.css"%}'>
+{% endblock %}
 
 {% block title %}Список объектов{% endblock %}
 
 {% block content %}
   {% if sights_list %}
     {% for s in sights_list %}
-      <a href='{% url "sights:detail" s.id %}'>{{s.sight_title}}</a><br>
+      <a class='button28' href='{% url "sights:detail" s.id %}'>{{s.sight_title}}</a><br>
     {% endfor %}
   {% else %}
     Статей нет!!!
   {% endif %}
+  <a id='add_sight_blank' class='button28' href='{% url "sights:add_sight_blank" %}'>Добавить объект</a>
+  <img id='marker' src='{% static "marker.png" %}'>
 {% endblock %}
