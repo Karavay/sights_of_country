@@ -3,13 +3,10 @@
 {% block title %}Добавление объекта{% endblock %}
 
 {% block content %}
-  <form action='{% url "sights:add_sight" %}' method='POST'>
-
-    {% csrf_token %}
-    <input type='text' placeholder="Название объекта" name='name'><br>
-    <textarea name="text" rows="8" cols="80" placeholder="Описание объекта"></textarea><br>
-    <input type='text' placeholder="широта" name='lat'><br>
-    <input type='text' placeholder="долгота" name='lon'><br>
-    <button type='submit'>Добавить объект</button>
+  <h1>New sight</h1>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="button">Save</button>
   </form>
 {% endblock %}

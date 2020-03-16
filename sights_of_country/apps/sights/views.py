@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Sight
 from django.http import Http404,HttpResponseRedirect
 from django.urls import reverse
 
 from django.utils import timezone
+
+from .forms import SightForm
 
 
 
@@ -26,17 +28,32 @@ def detail(request,sight_id):
     return render(request,'sights/detail.html',{'sight': s,'img_list':img_list})
 
 def add_sight_blank(request):
-    return render(request,'sights/add_sight_blank.html')
 
-def add_sight(request):
-    s = Sight(sight_title = request.POST['name'],
-                 sight_description = request.POST['text'],
-                 sight_lat = request.POST['lat'],
-                 sight_lon = request.POST['lon'],
-                 pub_date = timezone.now()
-        )
-    s.save()
-    return HttpResponseRedirect(reverse('sights:index'))
+    if request.method == "POST":
+        form = SightForm(request.POST)
+        if form.is_valid():
+            sight = form.save(commit=False)
+            sight.save()
+            return redirect('sights:detail',sight_id=sight.pk)
+    else:
+        form = SightForm()
+    return render(request,'sights/add_sight_blank.html',{'form':form})
+
+# def add_sight(request):
+#     # s = Sight(sight_title = request.POST['name'],
+#     #              sight_description = request.POST['text'],
+#     #              sight_lat = request.POST['lat'],
+#     #              sight_lon = request.POST['lon'],
+#     #              pub_date = timezone.now()
+#     #     )
+#     # s.save()
+#
+#     # if request.method == 'POST':
+#     #     form = PostForm(request.POST)
+#     #     if form.is_valid():
+#     #         post =
+#         form = SightForm()
+#     return HttpResponseRedirect(reverse('sights:index'))
 
 # #map function
 # def add_map(request,sight_id):

@@ -7,5 +7,4 @@ urlpatterns = [
     path('<int:sight_id>/',views.detail,name='detail'),
     path('',views.index,name='index'),
     path('add_sight_blank',views.add_sight_blank,name='add_sight_blank'),
-    path('add_sight_blank/add_sight',views.add_sight,name='add_sight'),
 ]

@@ -2,6 +2,8 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 import PIL
 
+from django.utils import timezone
+
 fs = FileSystemStorage(location = 'sights_of_country/media')
 
 class Sight(models.Model):
@@ -9,7 +11,7 @@ class Sight(models.Model):
     sight_description = models.TextField('описание объекта')
     sight_lat = models.FloatField('широта')
     sight_lon = models.FloatField('долгота')
-    pub_date = models.DateTimeField('дата публикации')
+    pub_date = models.DateTimeField('дата публикации',default=timezone.now())   
 
     def __str__(self):
         return self.sight_title
